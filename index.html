@@ -257,7 +257,7 @@ nav {
     transparent 40px,
     transparent 80px
   );
-  animation: dash-scroll 0.3s linear infinite;
+  animation: dash-scroll 0.15s linear infinite;
 }
 #transition-car {
   position: absolute;
@@ -271,7 +271,7 @@ nav {
   transform: translateY(-50%) scaleX(-1);
 }
 .road-wheel {
-  animation: wheel-spin 0.3s linear infinite;
+  animation: wheel-spin 0.15s linear infinite;
   transform-origin: center;
 }
 @keyframes wheel-spin {
@@ -288,7 +288,7 @@ nav {
 section {
   position: relative;
   z-index: 1;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   scroll-snap-align: start;
   display: flex;
@@ -524,9 +524,16 @@ section {
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; text-align: center; }
-  .title-comic { font-size: 60px; }
+  .title-comic { font-size: 48px; }
   .speech-bubble::after, .speech-bubble::before { display: none; }
   .nav-links { display: none; }
+  .scroll-container { scroll-snap-type: none; }
+  section { padding: 100px 20px 60px; min-height: 100vh; height: auto; scroll-snap-align: none; }
+  .skill-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .skill-category { width: auto; font-size: 18px; }
+  .comic-panel-grid { grid-template-columns: 1fr !important; }
+  .comic-box { padding: 20px; }
+  .hero-role { font-size: 16px; margin-bottom: 20px; border-left: none; border-bottom: 4px solid #000; padding-bottom: 10px; display: inline-block; padding-left: 0; }
 }
 </style>
 </head>
@@ -681,7 +688,7 @@ section {
           github.com/anmoltyagi18
         </a>
       </div>
-      <div class="comic-panel-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="comic-panel-grid">
         
         <div class="comic-panel gs-reveal-card">
           <img src="assets/hacker_character.png" alt="Project 1" class="project-img" style="height: 150px; object-fit: cover;">
@@ -867,7 +874,7 @@ function playPageTransition(direction) {
     transitionCar.classList.remove('flipped');
     gsap.fromTo(transitionCar, 
       { left: -200 }, 
-      { left: window.innerWidth + 200, duration: 1.2, ease: "power1.inOut", 
+      { left: window.innerWidth + 200, duration: 0.5, ease: "power1.inOut", 
         onComplete: () => {
           gsap.to(transitionOverlay, { autoAlpha: 0, duration: 0.2, onComplete: () => isAnimating = false });
         } 
@@ -877,7 +884,7 @@ function playPageTransition(direction) {
     transitionCar.classList.add('flipped');
     gsap.fromTo(transitionCar, 
       { left: window.innerWidth + 200 }, 
-      { left: -200, duration: 1.2, ease: "power1.inOut",
+      { left: -200, duration: 0.5, ease: "power1.inOut",
         onComplete: () => {
           gsap.to(transitionOverlay, { autoAlpha: 0, duration: 0.2, onComplete: () => isAnimating = false });
         } 
