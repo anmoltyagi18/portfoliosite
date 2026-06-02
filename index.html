@@ -850,19 +850,7 @@ const scrollEl = document.querySelector('.scroll-container');
 let isAnimating = false;
 
 gsap.registerPlugin(ScrollTrigger);
-gsap.utils.toArray('section').forEach((section, index) => {
-  if (index === 0) return;
-  
-  ScrollTrigger.create({
-    trigger: section,
-    scroller: scrollEl,
-    start: "top 50%",
-    onEnter: () => playPageTransition(1),
-    onEnterBack: () => playPageTransition(-1)
-  });
-});
-
-function playPageTransition(direction) {
+function playPageTransition(direction, callback) {
   if (isAnimating) return;
   isAnimating = true;
   
@@ -876,6 +864,7 @@ function playPageTransition(direction) {
       { left: -200 }, 
       { left: window.innerWidth + 200, duration: 0.5, ease: "power1.inOut", 
         onComplete: () => {
+          if (callback) callback();
           gsap.to(transitionOverlay, { autoAlpha: 0, duration: 0.2, onComplete: () => isAnimating = false });
         } 
       }
@@ -886,6 +875,7 @@ function playPageTransition(direction) {
       { left: window.innerWidth + 200 }, 
       { left: -200, duration: 0.5, ease: "power1.inOut",
         onComplete: () => {
+          if (callback) callback();
           gsap.to(transitionOverlay, { autoAlpha: 0, duration: 0.2, onComplete: () => isAnimating = false });
         } 
       }
@@ -899,15 +889,27 @@ function playPageTransition(direction) {
 gsap.registerPlugin(ScrollTrigger);
 const scroller = '.scroll-container';
 
-// Navigation Links smooth scroll
-document.querySelectorAll('.nav-links a').forEach(link => {
+// Button and Navigation Links transition click handler
+document.querySelectorAll('.btn-comic, .nav-links a').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    const targetId = link.getAttribute('href');
-    const target = document.querySelector(targetId);
-    if(target) {
-      scrollEl.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
-    }
+    const href = link.getAttribute('href');
+    const target = link.getAttribute('target');
+    
+    playPageTransition(1, () => {
+      if (href && href.startsWith('#')) {
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+          scrollEl.scrollTo({ top: targetEl.offsetTop, behavior: 'smooth' });
+        }
+      } else if (href) {
+        if (target === '_blank') {
+          window.open(href, '_blank');
+        } else {
+          window.location.href = href;
+        }
+      }
+    });
   });
 });
 
