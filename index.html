@@ -522,6 +522,78 @@ section {
   gap: 10px;
 }
 
+/* ═══════════════════════════════════════════════
+   CERTIFICATE LOGO STYLES
+   ═══════════════════════════════════════════════ */
+.cert-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.cert-logo {
+  width: 58px;
+  height: 58px;
+  border: 3px solid #000;
+  box-shadow: 5px 5px 0 #000;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+  padding: 7px;
+}
+.cert-logo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 5px 5px;
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+  z-index: 2;
+}
+.cert-logo:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 9px 9px 0 #000;
+}
+.cert-logo:hover::after {
+  opacity: 0.12;
+}
+.cert-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Comic ink-stamp effect: strip color, boost contrast */
+  filter: grayscale(1) contrast(1.8) brightness(0.85);
+  transition: filter 0.2s;
+  position: relative;
+  z-index: 1;
+}
+.cert-logo:hover img {
+  filter: grayscale(1) contrast(2.2) brightness(0.7);
+}
+.cert-logo.dark-bg img {
+  /* for logos that need white-on-dark treatment */
+  filter: grayscale(1) invert(1) contrast(1.6) brightness(1.1);
+}
+.cert-logo.dark-bg:hover img {
+  filter: grayscale(1) invert(1) contrast(2) brightness(0.9);
+}
+.cert-issuer-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Bangers', cursive;
+  font-size: 19px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; text-align: center; }
   .title-comic { font-size: 48px; }
@@ -601,6 +673,7 @@ section {
     <a href="#hero">Start</a>
     <a href="#about">Origin</a>
     <a href="#projects">Missions</a>
+    <a href="#achievements">Achievements</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Signal</a>
   </div>
@@ -642,7 +715,10 @@ section {
           <p style="font-weight: 600; font-size: 18px; margin-bottom: 30px;">
             Building scalable systems, APIs, and slaying bugs in the dark.
           </p>
-          <a href="#contact" class="btn-comic">Hire Me! 💥</a>
+          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <a href="#contact" class="btn-comic">Hire Me! 💥</a>
+            <a href="assets/Anmol_Tyagi_Resume_Final.pdf" target="_blank" class="btn-comic" style="background: #000; color: #fff; box-shadow: 6px 6px 0 #aaa;">📄 View Resume</a>
+          </div>
         </div>
         <div class="car-container gs-reveal-right">
           <!-- Laptop image -->
@@ -764,8 +840,15 @@ section {
         <!-- Postman API Student Expert -->
         <div class="comic-panel gs-reveal-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 25px;">
           <div>
-            <div class="comic-panel-title" style="font-size: 22px;">Postman API Student Expert</div>
-            <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">Postman — Issued Feb 2026</p>
+            <!-- Postman Real Logo (comic B&W treatment) -->
+            <div class="cert-logo-wrap">
+              <div class="cert-logo dark-bg" style="background: #ff6c37; padding: 6px;">
+                <img src="https://cdn.simpleicons.org/postman/ffffff" alt="Postman" title="Postman">
+              </div>
+              <div class="cert-issuer-badge">Postman</div>
+            </div>
+            <div class="comic-panel-title" style="font-size: 22px;">API Student Expert</div>
+            <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">Issued Feb 2026</p>
             <p class="comic-panel-text" style="font-size: 13px; margin-bottom: 10px;">Credential ID: 6983621596b46c0a7eb0bdcd</p>
             <div style="margin-top: 15px;">
               <span class="tag-comic" style="font-size: 12px;">Postman API</span>
@@ -776,8 +859,15 @@ section {
         <!-- AWS Cloud Practitioner Essentials -->
         <div class="comic-panel gs-reveal-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 25px;">
           <div>
-            <div class="comic-panel-title" style="font-size: 22px;">AWS Cloud Practitioner Essentials</div>
-            <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">Amazon Web Services (AWS) — Issued Jan 2026</p>
+            <!-- AWS Real Logo (comic B&W treatment) -->
+            <div class="cert-logo-wrap">
+              <div class="cert-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" title="Amazon Web Services">
+              </div>
+              <div class="cert-issuer-badge">AWS</div>
+            </div>
+            <div class="comic-panel-title" style="font-size: 22px;">Cloud Practitioner Essentials</div>
+            <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">Amazon Web Services — Issued Jan 2026</p>
             <div style="margin-top: 15px;">
               <span class="tag-comic" style="font-size: 12px;">Amazon Web Services (AWS)</span>
             </div>
@@ -787,8 +877,15 @@ section {
         <!-- SQL Basic -->
         <div class="comic-panel gs-reveal-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 25px;">
           <div>
+            <!-- HackerRank Real Logo (comic B&W treatment) -->
+            <div class="cert-logo-wrap">
+              <div class="cert-logo dark-bg" style="background: #00ea64; padding: 6px;">
+                <img src="https://cdn.simpleicons.org/hackerrank/ffffff" alt="HackerRank" title="HackerRank">
+              </div>
+              <div class="cert-issuer-badge">HackerRank</div>
+            </div>
             <div class="comic-panel-title" style="font-size: 22px;">SQL Basic</div>
-            <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">HackerRank — Issued Aug 2025</p>
+            <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">Issued Aug 2025</p>
             <div style="margin-top: 15px;">
               <span class="tag-comic" style="font-size: 12px;">SQL</span>
             </div>
@@ -798,6 +895,13 @@ section {
         <!-- Python Bootcamp -->
         <div class="comic-panel gs-reveal-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 25px;">
           <div>
+            <!-- GeeksforGeeks Real Logo (comic B&W treatment) -->
+            <div class="cert-logo-wrap">
+              <div class="cert-logo dark-bg" style="background: #2f8d46; padding: 6px;">
+                <img src="https://cdn.simpleicons.org/geeksforgeeks/ffffff" alt="GeeksforGeeks" title="GeeksforGeeks">
+              </div>
+              <div class="cert-issuer-badge">GFG</div>
+            </div>
             <div class="comic-panel-title" style="font-size: 22px;">Python Bootcamp</div>
             <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">GeeksforGeeks — Issued Aug 2025</p>
             <div style="margin-top: 15px;">
@@ -809,6 +913,13 @@ section {
         <!-- AI for Beginners -->
         <div class="comic-panel gs-reveal-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 25px;">
           <div>
+            <!-- HP Real Logo (comic B&W treatment) -->
+            <div class="cert-logo-wrap">
+              <div class="cert-logo dark-bg" style="background: #0096d6; padding: 6px;">
+                <img src="https://cdn.simpleicons.org/hp/ffffff" alt="HP" title="HP LIFE">
+              </div>
+              <div class="cert-issuer-badge">HP LIFE</div>
+            </div>
             <div class="comic-panel-title" style="font-size: 22px;">AI for Beginners</div>
             <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">HP — Issued Jul 2025</p>
             <div style="margin-top: 15px;">
@@ -820,6 +931,13 @@ section {
         <!-- GenAI in Data Analytics -->
         <div class="comic-panel gs-reveal-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 25px;">
           <div>
+            <!-- Meta Real Logo (comic B&W treatment) -->
+            <div class="cert-logo-wrap">
+              <div class="cert-logo dark-bg" style="background: #0468ff; padding: 6px;">
+                <img src="https://cdn.simpleicons.org/meta/ffffff" alt="Meta" title="Meta">
+              </div>
+              <div class="cert-issuer-badge">Meta</div>
+            </div>
             <div class="comic-panel-title" style="font-size: 22px;">GenAI in Data Analytics</div>
             <p class="comic-panel-text" style="font-size: 14px; opacity: 0.8; margin-bottom: 10px; font-weight: bold;">Meta — Issued May 2025</p>
             <p class="comic-panel-text" style="font-size: 13px; margin-bottom: 10px;">Credential ID: L50XTR6W5MLW</p>
